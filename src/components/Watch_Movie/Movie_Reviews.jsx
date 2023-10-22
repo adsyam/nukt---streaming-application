@@ -2,7 +2,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import axios from "axios"
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { React, useEffect, useState } from "react"
 import { useLocation } from "react-router"
 import { defprofile } from "../../assets"
 
@@ -13,7 +13,7 @@ export default function MovieReviews({ id }) {
   const [showRest, setShowRest] = useState(1)
   const [userData, setUserData] = useState(null)
   const [path, setPath] = useState()
-  
+
   const location = useLocation()
   const pathname = location.pathname
 
@@ -58,12 +58,6 @@ export default function MovieReviews({ id }) {
       .request(options)
       .then(function (response) {
         setReview(response.data.results)
-
-        // const initialExpandedMap = {}
-        // response.data.results.map((r) => {
-        //   initialExpandedMap[r.id] = false
-        // })
-        // setExpandedMap(initialExpandedMap)
       })
       .catch(function (error) {
         console.error(error)
@@ -78,7 +72,6 @@ export default function MovieReviews({ id }) {
             `https://xsgames.co/randomusers/assets/avatars/male/${review.index}`
           )
           if (response.ok) {
-            const data = await response.json()
             setUserData(response) // Assuming you want to store the first user data
             console.log(response)
           } else {
@@ -89,7 +82,6 @@ export default function MovieReviews({ id }) {
         // Handle network or other errors
       }
     }
-
     fetchData()
   }, [review.index])
 
@@ -156,10 +148,16 @@ export default function MovieReviews({ id }) {
               </div>
             </div>
             <p className="text-white mx-32 font-thin opacity-80 mb-4">
-              {expandedMap[r.id]
-                ? r.content
-                : r.content.toString().split(" ").slice(0, 45).join(" ") +
-                  "..."}
+              {expandedMap[r.id] ? (
+                <div dangerouslySetInnerHTML={{ __html: r.content }}></div>
+              ) : (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      r.content.split(" ").slice(0, 45).join(" ") + "..."
+                  }}
+                ></div>
+              )}
               <span
                 role="button"
                 onClick={() => toggleExpanded(r.id)}

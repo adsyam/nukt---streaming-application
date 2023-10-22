@@ -6,12 +6,13 @@ import "swiper/css/effect-fade"
 import { Autoplay, EffectFade } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 
+import { loader_Lava, loader_Magnify, loader_Wave, loader_Cine } from "../assets/index"
 import { genres } from "../constants/GenreList"
+import { Player, Controls } from "@lottiefiles/react-lottie-player"
+
 const Carousel = () => {
   const [carousel, setCarousel] = useState([])
   const [loading, setLoading] = useState(true)
-
-
 
   useEffect(() => {
     const options = {
@@ -29,7 +30,9 @@ const Carousel = () => {
       .request(options)
       .then(function (response) {
         setCarousel(response.data.results)
-        setLoading(false)
+        setTimeout(() => {
+          setLoading(false)
+        }, 1600)
       })
       .catch(function (error) {
         console.error(error)
@@ -37,14 +40,9 @@ const Carousel = () => {
       })
   }, [])
 
-//   const fadeInVariants = {
-//     hidden: { opacity: 0 },
-//     visible: { opacity: 1 },
-//   }
-
   return (
     <>
-      {!loading && (
+      {!loading ? (
         <Swiper
           centeredSlides={true}
           autoplay={{
@@ -112,6 +110,8 @@ const Carousel = () => {
               </SwiperSlide>
             ))}
         </Swiper>
+      ) : (
+        <Player autoplay loop src={loader_Cine} className="flex items-center justify-center w-[30%] h-[70vh]"></Player>
       )}
     </>
   )

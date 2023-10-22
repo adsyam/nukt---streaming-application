@@ -14,7 +14,7 @@ const [isLoading, setIsLoading] = useState(false)
 
   return (
     <div className="flex items-center justify-center m-10 pt-1">
-      <div className="flex items-center justify-center w-screen h-[90vh] rounded-[10px] border-[#398FDD] border-2 ">
+      <div className="flex items-center justify-center w-screen h-[90vh] rounded-[10px] border-[#ffffff30] border-2 ">
         {isLoading ? (
           <div className="flex items-center justify-center h-screen">
             <Ripples size={45} speed={2} color="#398FDD" />
@@ -22,7 +22,7 @@ const [isLoading, setIsLoading] = useState(false)
         ) : (
           <iframe
             title="Movie Embed"
-            src={`https://vidsrc.me/embed/tv?tmdb=${id}&season=${Season}&episode=${Episode}`}
+            src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${Season}&e=${Episode}`}
             frameBorder={0}
             allowFullScreen
             className="aspect-video w-full h-full rounded-[10px]"
