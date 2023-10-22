@@ -40,7 +40,6 @@ export default function MovieDetails({ id }) {
               </p>
               <div className="flex items-center gap-1 rounded-md px-3 py-1 ">
                 <p>{movieDetail.vote_average.toFixed(1)}</p>
-                {/* <FontAwesomeIcon icon={faStar} /> */}
                 <img
                   src="https://img.icons8.com/?size=512&id=12246&format=png"
                   alt=""

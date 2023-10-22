@@ -75,7 +75,7 @@ const TopRatedMovie = () => {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-10 mx-12 gap-2">
+            <div className="grid grid-cols-10 mx-12 gap-4">
               {topRated
                 .filter((pop) => pop.poster_path && pop.backdrop_path)
                 .slice(0, 20)
@@ -96,7 +96,13 @@ const TopRatedMovie = () => {
                       animate="visible"
                       transition={{ delay: index * 0.07 }}
                     >
-                      <img
+                      <motion.img
+                        whileHover={{ scale: 1.05 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 10,
+                        }}
                         src={`https://image.tmdb.org/t/p/original/${pop.poster_path}`}
                         alt={`${
                           pop.original_title || pop.original_name

@@ -1,5 +1,5 @@
 import axios from "axios"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import "swiper/css"
 import "swiper/css/effect-fade"
@@ -7,7 +7,6 @@ import { Autoplay, EffectFade } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 
 import { genres } from "../constants/GenreList"
-import { TOKEN_AUTH } from "../constants/apiConfig"
 const Carousel = () => {
   const [carousel, setCarousel] = useState([])
   const [loading, setLoading] = useState(true)
@@ -54,7 +53,7 @@ const Carousel = () => {
           }}
           modules={[Autoplay, EffectFade]}
           effect="fade"
-          className="mySwiper"
+          className="mySwiper h-[70vh]"
         >
           {carousel
             .filter((c) => c.media_type === "tv" || "movie")

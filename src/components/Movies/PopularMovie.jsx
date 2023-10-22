@@ -34,6 +34,10 @@ const PopularMovie = () => {
       })
   }, [change])
 
+  useEffect(() => {
+    
+  })
+
   const fadeInVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -47,8 +51,8 @@ const PopularMovie = () => {
             <div className="flex items-center px-2 justify-between mx-12">
               <div className="flex gap-2 items-center">
                 <p className="text-2xl mb-1 font-medium">Popular</p>
-                <div className="flex gap-2 px-3 py-1 rounded-md">
-                  <button
+                <motion.div className="flex gap-2 px-3 py-1 rounded-md">
+                  <motion.button
                     onClick={() => setChange("tv")}
                     className={`${
                       change === "tv"
@@ -57,8 +61,8 @@ const PopularMovie = () => {
                     } px-3 py-1 rounded-md`}
                   >
                     Series
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
                     onClick={() => setChange("movie")}
                     className={`${
                       change === "movie"
@@ -67,8 +71,8 @@ const PopularMovie = () => {
                     } px-3 py-1 rounded-md`}
                   >
                     Movie
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               </div>
               <Link className="flex items-center gap-1" to={`/Search`}>
                 <p>See all </p>
@@ -86,7 +90,7 @@ const PopularMovie = () => {
                     className="w-fit grid"
                     to={
                       change === "tv"
-                        ? `/TVSeries/${pop.id}`
+                        ? `/TVSeries/${pop.id}/1/1`
                         : `/Movie/${pop.id}`
                     }
                   >
@@ -98,6 +102,11 @@ const PopularMovie = () => {
                     >
                       <motion.img
                         whileHover={{ scale: 1.05 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 10,
+                        }}
                         src={`https://image.tmdb.org/t/p/original/${pop.poster_path}`}
                         alt={`${
                           pop.original_title || pop.original_name

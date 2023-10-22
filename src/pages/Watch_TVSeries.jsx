@@ -1,49 +1,17 @@
-import { Ripples } from "@uiball/loaders"
-import { useEffect, useState } from "react"
-import { useLocation, useParams } from "react-router"
-import { Navbar, ReviewSection } from "../components"
+import { useParams } from "react-router"
 import Navbar2 from "../components/Navbar2"
-import { motion } from "framer-motion"
-
+import EpisodeFrame from "../components/Watch_Series/EpisodeFrame"
+import EpisodeList from "../components/Watch_Series/EpisodeList"
 
 export default function WatchTVSeries() {
-  const { id } = useParams()
-  const [isLoading, setIsLoading] = useState(false)
-  const location = useLocation()
+  const { id, Season, Episode } = useParams()
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location])
-
-  useEffect(() => {
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
-  }, [])
 
   return (
     <>
       <Navbar2 />
-      <div className="flex items-center justify-center m-10 pt-1">
-        <div className="flex items-center justify-center w-screen h-[90vh] rounded-[10px] border-[#398FDD] border-2 ">
-          {isLoading ? (
-            <div className="flex items-center justify-center h-screen">
-              <Ripples size={45} speed={2} color="#398FDD" />
-            </div>
-          ) : (
-            <iframe
-              title="Movie Embed"
-              src={`https://vidsrc.me/embed/tv?tmdb=${id}&season=1&episode=1`}
-              frameBorder={0}
-              allowFullScreen
-              className="aspect-video w-full h-full rounded-[10px]"
-            />
-          )}
-        </div>
-      </div>
-      {/* <MovieDescription/> */}
-      <ReviewSection />
+      <EpisodeFrame id={id} Season={Season} Episode={Episode} />
+      <EpisodeList id={id} Season={Season}/>
     </>
   )
 }

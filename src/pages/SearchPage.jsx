@@ -78,12 +78,12 @@ export default function SearchPage() {
     //   }}
     >
       <Navbar2 />
-      <div className="text-white my-12">
+      <div className="text-white my-12 ">
         <section className="flex gap-1 mx-12">
           <p>Showing results for</p>
           <p className="text-[#398FDD]">&quot;{query}&quot;</p>
         </section>
-        <section className="mb-12">
+        <section className="mb-12 ">
           <h2 className="mx-12">Movie</h2>
           <div className="grid grid-cols-10 mx-12 gap-4">
             {movieData
@@ -103,7 +103,7 @@ export default function SearchPage() {
               ))}
           </div>
         </section>
-        <section className="mb-12">
+        <section className="mb-12 ">
           <h2 className="mx-12">TV Series</h2>
           <div className="grid grid-cols-10 mx-12 gap-4">
             {tvData
