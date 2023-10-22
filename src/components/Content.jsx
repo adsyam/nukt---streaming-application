@@ -1,8 +1,7 @@
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useEffect } from "react"
-import { PopularMovie, TrendingMovie } from "./Movies"
-import { PopularTVSeries } from "./TVSeries"
+import { PopularMovie, TrendingMovie, TopRatedMovie } from "./Movies"
 
 export default function Content() {
   const [ref, inView] = useInView({
@@ -46,7 +45,7 @@ export default function Content() {
         animate={inView ? "visible" : "hidden"}
         variants={animationVariants}
       >
-        <PopularTVSeries />
+      <TopRatedMovie />
       </motion.div>
     </>
   )

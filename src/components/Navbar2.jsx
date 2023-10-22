@@ -1,4 +1,4 @@
-import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import { faBars, faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
@@ -6,6 +6,7 @@ import nukt_logo from "../assets/nukt_logo.png"
 
 const Navbar2 = () => {
   const [search, setSearch] = useState("")
+  const [isOpen, setIsOpen] = useState(false)
 
   const searchStyle = {
     backgroundColor: "rgba(0, 0, 0, 0.1)",
@@ -19,21 +20,32 @@ const Navbar2 = () => {
 
   const navigate = useNavigate()
 
+
   function searchEnter(e) {
     if (search !== "") {
       if (e.key === "Enter") {
-        navigate(`/SearchPage/${search}`)
+        navigate(`/Search/${search}`)
       }
     }
   }
   return (
     <nav className={`bg-[#0A0E170] h-14 flex items-center `}>
       <div className="flex items-center mx-10 gap-3">
-        <FontAwesomeIcon
-          role="button"
-          icon={faBars}
-          style={{ color: "#ffffff", fontSize: "25px" }}
-        />
+        <div role="button" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? (
+            <FontAwesomeIcon
+              role="button"
+              icon={faXmark}
+              className="text-white text-2xl"
+            />
+          ) : (
+            <FontAwesomeIcon
+              role="button"
+              icon={faBars}
+              className="text-white text-2xl"
+            />
+          )}
+        </div>
         <Link to={`/`} className="flex items-center gap-2">
           <img src={nukt_logo} alt="" width={35} height={41} />
           <p className="text-white font-bold">Nukt</p>
@@ -50,7 +62,7 @@ const Navbar2 = () => {
         />
         <Link
           className="text-white absolute pr-1.5"
-          to={search !== "" ? `/SearchPage/${search}` : null}
+          to={search !== "" ? `/Search/${search}` : null}
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Link>

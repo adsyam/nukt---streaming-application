@@ -1,6 +1,6 @@
 import MovieDescription from "./MovieDescription"
 import PopularMovie from "./PopularMovie"
-import TopRatedMovie from "./TopRatedMovie"
-import TrendingMovie from "./TrendingMovie.jsx"
+import TrendingMovie from './TrendingMovie'
+import TopRatedMovie from './TopRatedMovie'
 
-export { MovieDescription, PopularMovie, TopRatedMovie, TrendingMovie }
+export { MovieDescription, PopularMovie, TrendingMovie, TopRatedMovie }

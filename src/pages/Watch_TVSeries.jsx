@@ -6,9 +6,8 @@ import Navbar2 from "../components/Navbar2"
 import { motion } from "framer-motion"
 
 
-export default function SeriesPage() {
+export default function WatchTVSeries() {
   const { id } = useParams()
-console.log(id)
   const [isLoading, setIsLoading] = useState(false)
   const location = useLocation()
 
@@ -35,7 +34,7 @@ console.log(id)
           ) : (
             <iframe
               title="Movie Embed"
-              src={`https://vidsrc.me/embed/movie?tmdb=1399/`}
+              src={`https://vidsrc.me/embed/tv?tmdb=${id}&season=1&episode=1`}
               frameBorder={0}
               allowFullScreen
               className="aspect-video w-full h-full rounded-[10px]"

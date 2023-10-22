@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { motion } from "framer-motion"
 
 const PopularTVSeries = () => {
   const [popular, setPopular] = useState([])
@@ -29,6 +30,12 @@ const PopularTVSeries = () => {
         setLoading(false)
       })
   }, [])
+
+  
+  const fadeInVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  }
   return (
     <>
       {!loading && (
@@ -39,18 +46,23 @@ const PopularTVSeries = () => {
                 <span className="text-[#398FDD]">TV Series</span> - Popular
               </p>
             </div>
-            <div className="grid grid-cols-5 mx-12 gap-2">
+            <div className="grid grid-cols-10 mx-12 gap-2">
               {popular
                 .filter((pop) => pop.poster_path && pop.backdrop_path)
-                .slice(0, 5)
-                .map((pop) => (
+                .slice(0, 20)
+                .map((pop, index) => (
                   <Link
                     href="#"
                     key={pop.id}
                     className="w-fit grid"
                     to={`/SeriesPage/${pop.id}`}
                   >
-                    <>
+                    <motion.div
+                      variants={fadeInVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: index * 0.07 }}
+                    >
                       <img
                         src={`https://image.tmdb.org/t/p/original/${pop.poster_path}`}
                         alt={`${pop.original_title} backdrop`}
@@ -58,12 +70,12 @@ const PopularTVSeries = () => {
                         className="rounded-[5px] w-fit hover:border-2 hover:transition-all border-transparent box-border border-white"
                       />
                       <div>
-                        <p className="word-break w-[215px] text-[16px] font-normal ml-1 box-border">
+                        <p className="word-break text-[16px] font-normal ml-1 box-border">
                           {pop.name}
                         </p>
                         <p>{pop.first_air_date.split("-")[0]}</p>
                       </div>
-                    </>
+                    </motion.div>
                   </Link>
                 ))}
             </div>

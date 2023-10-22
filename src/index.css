@@ -23,6 +23,15 @@ body {
   white-space: normal;
 }
 
+.truncate-review {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5; /* Set the number of lines to display */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
 /* .input_CSS {
   position: relative;
   display: flex;

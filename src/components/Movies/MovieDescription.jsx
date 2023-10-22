@@ -1,10 +1,12 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
+import Trailer from "./trailer"
+import { TOKEN_AUTH } from "../../constants/apiConfig"
 
 export default function MovieDescription() {
     const {id} = useParams()
-  const [movieDetail, setMovieDetail] = useState(null)
+  const [movieDetail, setMovieDetail] = useState([])
 //   console.log(movieDetail)
 
   useEffect(() => {
@@ -14,15 +16,13 @@ export default function MovieDescription() {
       params: { language: "en-US" },
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MmYzMzZmYzc2MzIyMDIyYmY0OTdiZmYwMmRiZWQ1YSIsInN1YiI6IjY1MjQwYTE2MGNiMzM1MTZmNjNiMTZiZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5E0K7l1TaIxgmhI98EM6y2mvcmuLcJTxdlRHI8u5Qac",
+        Authorization: `${TOKEN_AUTH}`,
       },
     }
 
     axios
       .request(options)
       .then(function (response) {
-        // console.log(response.data)
         setMovieDetail(response.data)
       })
       .catch(function (error) {
@@ -31,8 +31,9 @@ export default function MovieDescription() {
   }, [id])
   return (
     <div className="text-white">
-      <p>{movieDetail.original_title}</p>
-      <p>{movieDetail.overview}</p>
+      <h1 className="text-4xl font-medium">{movieDetail.original_title}</h1>
+      <p className="text-sm">{movieDetail.overview}</p>
+      <Trailer id={id}/>
     </div>
   )
 }

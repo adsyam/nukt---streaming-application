@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion"
 import React from "react"
 import { Route, Routes, useLocation } from "react-router-dom"
-import { Home, SearchPage, VideoPage } from "../pages/index"
+import { Home, SearchPage, WatchMovie, WatchTVSeries } from "../pages/index"
 
 const AnimatedRoutes = () => {
   const location = useLocation()
@@ -11,9 +11,11 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route index element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/SearchPage/:query" element={<SearchPage />} />
-        <Route path="/VideoPage/:id" element={<VideoPage />} />
-        <Route path="/SeriesPage/:id" element={<VideoPage />} />
+        <Route path="/Search" element={<SearchPage />}>
+          <Route path=":query" element={<SearchPage />} />
+        </Route>
+        <Route path="/Movie/:id" element={<WatchMovie />} />
+        <Route path="/TVSeries/:id" element={<WatchTVSeries />} />
       </Routes>
     </AnimatePresence>
   )

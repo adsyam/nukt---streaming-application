@@ -1,3 +1,5 @@
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import axios from "axios"
 import { motion } from "framer-motion"
 import React, { useEffect, useState } from "react"
@@ -6,11 +8,12 @@ import { Link } from "react-router-dom"
 const TrendingMovie = () => {
   const [trendingMovie, setTrendingMovie] = useState([])
   const [Loading, setLoading] = useState(true)
+  const [change, setChange] = useState("tv")
 
   useEffect(() => {
     const options = {
       method: "GET",
-      url: "https://api.themoviedb.org/3/trending/movie/day",
+      url: `https://api.themoviedb.org/3/trending/${change}/day`,
       params: { language: "en-US" },
       headers: {
         accept: "application/json",
@@ -29,7 +32,7 @@ const TrendingMovie = () => {
         console.error(error)
         setLoading(false)
       })
-  }, [])
+  }, [change])
 
   const fadeInVariants = {
     hidden: { opacity: 0 },
@@ -41,10 +44,36 @@ const TrendingMovie = () => {
       {!Loading && (
         <div className="flex justify-center w-full">
           <div className="text-white py-12 w-full gap-1">
-            <div className="flex items-center px-2">
-              <p className="font-bold text-2xl">
-                <span className="text-[#398FDD]">Movies</span> - Trending
-              </p>
+            <div className="flex items-center px-2 justify-between mx-12">
+              <div className="flex gap-2 items-center">
+                <p className="text-2xl mb-1 font-medium">Trending</p>
+                <div className="flex gap-2 px-3 py-1 rounded-md">
+                  <button
+                    onClick={() => setChange("tv")}
+                    className={`${
+                      change === "tv"
+                        ? "bg-[#ffffff30] px-3 py-1 rounded-md"
+                        : null
+                    } px-3 py-1 rounded-md`}
+                  >
+                    Series
+                  </button>
+                  <button
+                    onClick={() => setChange("movie")}
+                    className={`${
+                      change === "movie"
+                        ? "bg-[#ffffff30] px-3 py-1 rounded-md"
+                        : null
+                    } px-3 py-1 rounded-md`}
+                  >
+                    Movie
+                  </button>
+                </div>
+              </div>
+              <Link className="flex items-center gap-1" to={`/SearchPage`}>
+                <p>See all </p>
+                <FontAwesomeIcon icon={faAngleRight} className="text-sm" />
+              </Link>
             </div>
             <div className="grid grid-cols-10 mx-12 gap-4">
               {trendingMovie
@@ -55,7 +84,11 @@ const TrendingMovie = () => {
                     href="#"
                     key={pop.id}
                     className="w-fit grid"
-                    to={`/VideoPage/${pop.id}`}
+                    to={
+                      change === "tv"
+                        ? `/TVSeries/${pop.id}`
+                        : `/Movie/${pop.id}`
+                    }
                   >
                     <motion.div
                       variants={fadeInVariants}
@@ -66,15 +99,22 @@ const TrendingMovie = () => {
                       <motion.img
                         whileHover={{ scale: 1.05 }}
                         src={`https://image.tmdb.org/t/p/original/${pop.poster_path}`}
-                        alt={`${pop.original_title} backdrop`}
+                        alt={`${
+                          pop.original_title || pop.original_name
+                        } backdrop`}
                         width={215}
                         className="rounded-[5px] w-fit border-transparent box-border border-white"
                       />
                       <div>
                         <p className="word-break text-[16px] font-normal truncate-text">
-                          {pop.original_title}
+                          {pop.original_title || pop.original_name}
                         </p>
-                        <p>{pop.release_date.split("-")[0]}</p>
+                        <p>
+                          {(pop.release_date &&
+                            pop.release_date.split("-")[0]) ||
+                            (pop.first_air_date &&
+                              pop.first_air_date.split("-")[0])}
+                        </p>
                       </div>
                     </motion.div>
                   </Link>
