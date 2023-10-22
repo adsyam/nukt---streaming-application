@@ -4,9 +4,10 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import React, { useState } from "react"
+import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import nukt_logo from "../assets/nukt_logo.png"
+import { useLocation } from "react-router-dom"
 
 const Navbar = () => {
   const [search, setSearch] = useState("")
@@ -23,8 +24,6 @@ const Navbar = () => {
   }
 
   const navigate = useNavigate()
-
-  const defPage = "1"
 
   function searchEnter(e) {
     if (search !== "") {

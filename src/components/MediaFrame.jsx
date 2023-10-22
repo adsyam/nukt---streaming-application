@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { Ripples } from "@uiball/loaders"
 
 
-export default function EpisodeFrame({id, Season, Episode}) {
+export default function MediaFrame({id, Season, Episode}) {
 const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const [isLoading, setIsLoading] = useState(false)
           </div>
         ) : (
           <iframe
-            title="Movie Embed"
+            title={{}}
             src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${Season}&e=${Episode}`}
             frameBorder={0}
             allowFullScreen

@@ -1,10 +1,31 @@
 import Carousel from "./Carousel"
-import Content from "./Content"
-import Movie from "./Movies/Movie"
+import EpisodeList from "./EpisodeList"
+import Footer from "./Footer"
+import MediaDetails from "./MediaDetails"
 import Navbar from "./Navbar"
-import Sidebar from "./Sidebar"
-import ReviewSection from "./ReviewSection"
-import MovieDescription from "./Movies/MovieDescription"
-import AnimatedRoutes from "./AnimatedRoutes"
+import Navbar2 from "./Navbar2"
+import Popular from "./Popular"
+import MediaReviews from "./MediaReviews"
+import TopRated from "./TopRated"
+import Trending from "./Trending"
+import MediaFrame from './MediaFrame'
+import SearchTVSeries from "./SearchTVSeries"
+import SearchMovie from './SearchMovie'
+import GenreMap from "./GenreMap"
 
-export { Carousel, Content, Movie, Navbar, Sidebar, MovieDescription, ReviewSection, AnimatedRoutes }
+export {
+  Carousel,
+  EpisodeList,
+  Footer,
+  MediaDetails,
+  MediaReviews,
+  Navbar,
+  Navbar2,
+  Popular,
+  TopRated,
+  Trending,
+  MediaFrame,
+  SearchTVSeries,
+  SearchMovie,
+  GenreMap
+}

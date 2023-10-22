@@ -4,9 +4,9 @@ import axios from "axios"
 import { motion } from "framer-motion"
 import { React, useEffect, useState } from "react"
 import { useLocation } from "react-router"
-import { defprofile } from "../../assets"
+import { defprofile } from "../assets"
 
-export default function MovieReviews({ id }) {
+export default function MediaReviews({ id }) {
   const [review, setReview] = useState([])
   const [showReviews, setShowReviews] = useState(false)
   const [expandedMap, setExpandedMap] = useState({})
@@ -153,8 +153,7 @@ export default function MovieReviews({ id }) {
               ) : (
                 <div
                   dangerouslySetInnerHTML={{
-                    __html:
-                      r.content.split(" ").slice(0, 45).join(" ") + "..."
+                    __html: r.content.split(" ").slice(0, 45).join(" ") + "...",
                   }}
                 ></div>
               )}

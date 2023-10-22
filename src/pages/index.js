@@ -1,6 +1,8 @@
 import Home from "./Home"
-import SearchPage from "./SearchPage"
+import SearchMedia from "./Search_Media"
 import WatchMovie from "./Watch_Movie"
 import WatchTVSeries from "./Watch_TVSeries"
+import MediaType from './MediaType'
+import Channel from './Channel'
 
-export { Home, SearchPage, WatchMovie, WatchTVSeries}
+export { Home, SearchMedia, WatchMovie, WatchTVSeries, MediaType, Channel}

@@ -106,14 +106,14 @@ export default function MovieDetails({ id, Season, Episode }) {
                 ))}
               </ul>
             </div>
-            <p>Summary:</p>
+            <p>SYNOPSIS:</p>
             <p>{movieDetail.overview}</p>
             <div className="flex gap-2 rounded-md">
               <button className="rounded-md px-3 py-1 bg-[#ffffff10] border border-[#ffe9e950] hover:bg-[#ffffff20] transition-all">
                 WATCH TRAILER
               </button>
               <button className="rounded-md px-3 py-1 bg-[#ffffff10] border border-[#ffe9e950] hover:bg-[#ffffff20] transition-all text-center align-middle">
-                <FontAwesomeIcon icon={faBookmark} className="" />
+                <FontAwesomeIcon icon={faBookmark} />
                 &nbsp;ADD TO THE LIBRARY
               </button>
             </div>

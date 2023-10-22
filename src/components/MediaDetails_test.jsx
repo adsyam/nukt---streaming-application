@@ -2,12 +2,12 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 // import Trailer from "./trailer"
-import { TOKEN_AUTH } from "../../constants/apiConfig"
+import { TOKEN_AUTH } from "../constants/apiConfig"
 
-export default function MovieDescription() {
-    const {id} = useParams()
+export default function MediaDetails() {
+  const { id } = useParams()
   const [movieDetail, setMovieDetail] = useState([])
-//   console.log(movieDetail)
+  //   console.log(movieDetail)
 
   useEffect(() => {
     const options = {

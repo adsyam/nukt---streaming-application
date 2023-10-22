@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { TOKEN_AUTH } from "../../constants/apiConfig"
+import { TOKEN_AUTH } from "../constants/apiConfig"
 
 export default function Trailer({ id }) {
   const [getTrailer, setGetTrailer] = useState([])

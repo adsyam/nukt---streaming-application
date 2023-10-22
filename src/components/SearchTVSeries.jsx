@@ -1,8 +1,8 @@
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 
-export default function MovieSection({
-  MovieID,
+export default function SearchTVSeries({
+  tvID,
   index,
   poster,
   backdrop,
@@ -12,7 +12,7 @@ export default function MovieSection({
   animation,
 }) {
   return (
-    <Link className="w-fit grid" to={`/Movie/${MovieID}`}>
+    <Link className="w-fit grid" to={`/TVSeries/${tvID}`}>
       <motion.div whileHover={{ scale: 1.03 }}>
         <motion.div
           variants={animation}

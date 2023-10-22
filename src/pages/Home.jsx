@@ -1,12 +1,16 @@
-import { Carousel, Content, Sidebar, Navbar } from "../components"
+import { Navbar, Carousel, Popular, Trending, TopRated } from "../components"
 
 
 export default function Home() {
-    return (
-      <>
-        <Navbar/>
-        <Carousel/>
-        <Content />
-      </>
-    )
+  return (
+    <>
+      <Navbar />
+      <Carousel />
+      <div>
+        <Popular />
+        <Trending />
+        <TopRated />
+      </div>
+    </>
+  )
 }
