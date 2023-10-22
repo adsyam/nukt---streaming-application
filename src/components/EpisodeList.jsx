@@ -1,19 +1,12 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { API_KEY } from "../constants/apiConfig"
 
 export default function EpisodeList({ id, Season }) {
   const [data, setData] = useState({})
   const defSeason = Season > 1 ? Season : "1"
   const [selectedSeason, setSelectedSeason] = useState(defSeason)
-  
-//   const defSeason = () => {
-//     if (Season > 1) {
-//         setSelectedSeason(1)
-//     } else {
-//         selectedSeason(Season)
-//     }
-//   }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +15,7 @@ export default function EpisodeList({ id, Season }) {
           `https://api.themoviedb.org/3/tv/${id}`,
           {
             params: {
-              api_key: "52f336fc76322022bf497bff02dbed5a",
+              api_key: API_KEY,
               append_to_response: "season",
             },
           }
@@ -38,13 +31,13 @@ export default function EpisodeList({ id, Season }) {
   }, [id])
 
   return (
-    <div className="text-white border flex flex-col w-fit rounded-md">
+    <div className="text-white border border-[#6b13d7] flex flex-col w-fit rounded-md">
       {data.seasons ? (
         <div className="p-2 rounded-md">
           <select
             onChange={(e) => setSelectedSeason(e.target.value)}
             value={selectedSeason}
-            className="bg-[#ffffff0] rounded-md p-1 text-black"
+            className="bg-[#6b13d7] rounded-md px-1 text-white whitespace-nowrap"
           >
             {data.seasons.map((season) => (
               <option key={season.id} value={season.season_number}>
@@ -61,8 +54,8 @@ export default function EpisodeList({ id, Season }) {
                 .map((season) => (
                   <li key={season.id}>
                     {season.episode_count > 0 && (
-                      <div style={{ maxHeight: "200px", overflowY: "auto" }}>
-                        <ul className="flex flex-col">
+                      <div style={{ maxHeight: "265px", overflowY: "auto" }}>
+                        <ul className="flex flex-col items-center whitespace-nowrap">
                           {Array.from(
                             { length: season.episode_count },
                             (_, index) => (
@@ -71,6 +64,7 @@ export default function EpisodeList({ id, Season }) {
                                   index + 1
                                 }`}
                                 key={index}
+                                className="px-2 my-1 rounded-md w-fit hover:bg-[#ffffff20]"
                               >
                                 Episode {index + 1}
                               </Link>

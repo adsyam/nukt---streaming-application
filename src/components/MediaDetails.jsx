@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router"
+import { TOKEN_AUTH } from "../constants/apiConfig"
 
 export default function MovieDetails({ id, Season, Episode }) {
   const [movieDetail, setMovieDetail] = useState(null)
@@ -26,7 +27,7 @@ export default function MovieDetails({ id, Season, Episode }) {
       headers: {
         accept: "application/json",
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MmYzMzZmYzc2MzIyMDIyYmY0OTdiZmYwMmRiZWQ1YSIsInN1YiI6IjY1MjQwYTE2MGNiMzM1MTZmNjNiMTZiZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5E0K7l1TaIxgmhI98EM6y2mvcmuLcJTxdlRHI8u5Qac",
+          TOKEN_AUTH,
       },
     }
 
@@ -70,10 +71,10 @@ export default function MovieDetails({ id, Season, Episode }) {
                   </p>
                 ) : (
                   <div className="flex gap-2">
-                    <p className="rounded-md px-3 bg-[#ffffff10]">
+                    <p className="rounded-md px-3 bg-[#ffffff10] text-[#8934f1]">
                       Season {Season}
                     </p>
-                    <p className="rounded-md px-3 bg-[#ffffff10]">
+                    <p className="rounded-md px-3 bg-[#ffffff10] text-[#8934f1]">
                       Episode {Episode}
                     </p>
                   </div>
@@ -93,7 +94,7 @@ export default function MovieDetails({ id, Season, Episode }) {
             <div className="flex items-center gap-2">
               <h3>Language:</h3>
               <p className="rounded-md px-3 bg-[#ffffff10]">
-                {movieDetail.original_language}
+                {movieDetail.original_language.toUpperCase()}
               </p>
             </div>
             <div className="flex items-center gap-2">

@@ -13,7 +13,7 @@ const [isLoading, setIsLoading] = useState(false)
   }, [])
 
   return (
-    <div className="flex items-center justify-center m-10 pt-1">
+    <div className="flex items-center justify-center m-10 pt-1 mt-24">
       <div className="flex items-center justify-center w-screen h-[90vh] rounded-[10px] border-[#ffffff30] border-2 ">
         {isLoading ? (
           <div className="flex items-center justify-center h-screen">

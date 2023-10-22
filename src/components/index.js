@@ -12,6 +12,7 @@ import MediaFrame from './MediaFrame'
 import SearchTVSeries from "./SearchTVSeries"
 import SearchMovie from './SearchMovie'
 import GenreMap from "./GenreMap"
+import ServerList from "./ServerList"
 
 export {
   Carousel,
@@ -27,5 +28,6 @@ export {
   MediaFrame,
   SearchTVSeries,
   SearchMovie,
-  GenreMap
+  GenreMap,
+  ServerList
 }

@@ -179,11 +179,11 @@ export default function MediaReviews({ id }) {
         ))}
       </div>
       <button onClick={toggleShowAll} className="text-white">
-        {review.length === 0
+      {review.length !== 1 ? review.length === 0
           ? "There are no reviews"
           : !showReviews
           ? "Show All Reviews"
-          : "Hide Reviews"}
+          : "Hide Reviews" : "There are no more reviews"}
       </button>
     </div>
   )

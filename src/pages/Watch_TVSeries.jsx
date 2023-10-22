@@ -5,7 +5,8 @@ import {
   MediaDetails,
   MediaFrame,
   MediaReviews,
-  Navbar2,
+  Navbar,
+  ServerList,
 } from "../components"
 
 export default function WatchTVSeries() {
@@ -13,10 +14,11 @@ export default function WatchTVSeries() {
 
   return (
     <>
-      <Navbar2 />
+      <Navbar />
       <MediaFrame id={id} Season={Season} Episode={Episode} />
-      <div className="flex mx-12 justify-center gap-4">
+      <div className="flex mx-24 justify-center gap-4">
         <EpisodeList id={id} Season={Season} />
+        <ServerList id={id} Season={Season} />
         <MediaDetails id={id} Season={Season} Episode={Episode} />
       </div>
       <MediaReviews id={id} />

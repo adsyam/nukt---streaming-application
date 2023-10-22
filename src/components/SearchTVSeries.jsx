@@ -12,7 +12,7 @@ export default function SearchTVSeries({
   animation,
 }) {
   return (
-    <Link className="w-fit grid" to={`/TVSeries/${tvID}`}>
+    <Link className="w-fit grid" to={`/TVSeries/${tvID}/1/1`}>
       <motion.div whileHover={{ scale: 1.03 }}>
         <motion.div
           variants={animation}

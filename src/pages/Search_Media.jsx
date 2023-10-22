@@ -3,7 +3,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { loader_Geometric } from "../assets"
-import { Navbar2, SearchMovie, SearchTVSeries } from "../components"
+import { Footer, Navbar, SearchMovie, SearchTVSeries } from "../components"
 import { TOKEN_AUTH } from "../constants/apiConfig"
 
 export default function SearchPage() {
@@ -54,7 +54,7 @@ export default function SearchPage() {
 
   return (
     <>
-      <Navbar2 />
+      <Navbar />
       {!loading ? (
         <>
           <div className="text-white my-12 ">
@@ -103,6 +103,7 @@ export default function SearchPage() {
               </div>
             </section>
           </div>
+          <Footer />
         </>
       ) : (
         <div key={animationKey}>

@@ -1,4 +1,4 @@
-import { Navbar, Carousel, Popular, Trending, TopRated } from "../components"
+import { Navbar, Carousel, Popular, Trending, TopRated, Footer } from "../components"
 
 
 export default function Home() {
@@ -11,6 +11,7 @@ export default function Home() {
         <Trending />
         <TopRated />
       </div>
+      <Footer />
     </>
   )
 }
