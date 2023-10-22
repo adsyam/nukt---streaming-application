@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
-import Trailer from "./trailer"
+// import Trailer from "./trailer"
 import { TOKEN_AUTH } from "../../constants/apiConfig"
 
 export default function MovieDescription() {
@@ -33,7 +33,7 @@ export default function MovieDescription() {
     <div className="text-white">
       <h1 className="text-4xl font-medium">{movieDetail.original_title}</h1>
       <p className="text-sm">{movieDetail.overview}</p>
-      <Trailer id={id}/>
+      {/* <Trailer id={id}/> */}
     </div>
   )
 }
