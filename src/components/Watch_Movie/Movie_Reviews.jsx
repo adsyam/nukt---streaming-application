@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import axios from "axios"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
+import { useLocation } from "react-router"
 import { defprofile } from "../../assets"
 
 export default function MovieReviews({ id }) {
@@ -11,7 +12,18 @@ export default function MovieReviews({ id }) {
   const [expandedMap, setExpandedMap] = useState({})
   const [showRest, setShowRest] = useState(1)
   const [userData, setUserData] = useState(null)
-  console.log(userData)
+  const [path, setPath] = useState()
+  
+  const location = useLocation()
+  const pathname = location.pathname
+
+  useEffect(() => {
+    if (pathname.includes("/TVSeries")) {
+      setPath("tv")
+    } else if (pathname.includes("/Movie")) {
+      setPath("movie")
+    }
+  }, [pathname])
 
   const toggleExpanded = (reviewId) => {
     setExpandedMap((prevMap) => ({
@@ -33,7 +45,7 @@ export default function MovieReviews({ id }) {
   useEffect(() => {
     const options = {
       method: "GET",
-      url: `https://api.themoviedb.org/3/movie/${id}/reviews`,
+      url: `https://api.themoviedb.org/3/${path}/${id}/reviews`,
       params: { language: "en-US", page: "1" },
       headers: {
         accept: "application/json",
@@ -56,7 +68,7 @@ export default function MovieReviews({ id }) {
       .catch(function (error) {
         console.error(error)
       })
-  }, [id])
+  }, [id, path])
 
   useEffect(() => {
     const fetchData = async () => {

@@ -85,7 +85,7 @@ export default function EpisodeList({ id, Season }) {
           )}
         </div>
       ) : (
-        <p>Loading...</p>
+        <p className="bg-black">Loading...</p>
       )}
     </div>
   )

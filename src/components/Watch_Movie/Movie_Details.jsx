@@ -1,15 +1,27 @@
+import { faBookmark } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBookmark } from "@fortawesome/free-solid-svg-icons"
+import { useLocation } from "react-router"
 
-export default function MovieDetails({ id }) {
+export default function MovieDetails({ id, Season, Episode }) {
   const [movieDetail, setMovieDetail] = useState(null)
+  const [path, setPath] = useState()
+  const location = useLocation()
+  const pathname = location.pathname
+
+  useEffect(() => {
+    if (pathname.includes("/TVSeries")) {
+      setPath("tv")
+    } else if (pathname.includes("/Movie")) {
+      setPath("movie")
+    }
+  }, [pathname])
 
   useEffect(() => {
     const options = {
       method: "GET",
-      url: `https://api.themoviedb.org/3/movie/${id}`,
+      url: `https://api.themoviedb.org/3/${path}/${id}`,
       params: { language: "en-US" },
       headers: {
         accept: "application/json",
@@ -26,25 +38,46 @@ export default function MovieDetails({ id }) {
       .catch(function (error) {
         console.error(error)
       })
-  }, [id])
+  }, [id, path])
 
   return (
     <div>
       {movieDetail && (
-        <div className="text-white bg-[#ffffff10] rounded-md border border-[#ffe9e950] p-3 mx-20">
-          <h2 className="text-4xl">{movieDetail.original_title}</h2>
+        <div className="text-white bg-[#ffffff10] rounded-md  p-3">
+          <div className="flex gap-2 items-center">
+            <h2 className="text-4xl">
+              {movieDetail.original_title || movieDetail.original_name}
+            </h2>{" "}
+            {/* {path === "tv" && (
+              
+            )} */}
+          </div>
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
-              <p className="rounded-md px-3 bg-[#ffffff10]">
-                {movieDetail.runtime}min
-              </p>
-              <div className="flex items-center gap-1 rounded-md px-3 py-1 ">
-                <p>{movieDetail.vote_average.toFixed(1)}</p>
-                <img
-                  src="https://img.icons8.com/?size=512&id=12246&format=png"
-                  alt=""
-                  width={30}
-                />
+              <div className="flex items-center gap-2 rounded-md  py-1 ">
+                <div className="flex items-center gap-1 rounded-md px-3 bg-[#ffffff10]">
+                  <p className="">{movieDetail.vote_average.toFixed(1)}</p>
+                  <img
+                    src="https://img.icons8.com/?size=512&id=12246&format=png"
+                    alt=""
+                    width={30}
+                    className="h-fit"
+                  />
+                </div>
+                {path === "movie" ? (
+                  <p className="rounded-md px-3 bg-[#ffffff10]">
+                    {movieDetail.runtime}min
+                  </p>
+                ) : (
+                  <div className="flex gap-2">
+                    <p className="rounded-md px-3 bg-[#ffffff10]">
+                      Season {Season}
+                    </p>
+                    <p className="rounded-md px-3 bg-[#ffffff10]">
+                      Episode {Episode}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -80,7 +113,7 @@ export default function MovieDetails({ id }) {
                 WATCH TRAILER
               </button>
               <button className="rounded-md px-3 py-1 bg-[#ffffff10] border border-[#ffe9e950] hover:bg-[#ffffff20] transition-all text-center align-middle">
-                <FontAwesomeIcon icon={faBookmark} className=""/>
+                <FontAwesomeIcon icon={faBookmark} className="" />
                 &nbsp;ADD TO THE LIBRARY
               </button>
             </div>
